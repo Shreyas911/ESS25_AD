@@ -17,5 +17,5 @@ budyko_sellers_tl.f: budyko_sellers.f
 
 .PHONY: clean
 clean:
-	$(RM) $(EXEC) *.o *.msg *.mod *_tl.f *_ad.f *~ tapStack* *.txt
+	$(RM) $(EXEC) *.o *.msg *.mod *_tl.f *_ad.f *~ *.txt
 
