@@ -1,0 +1,16 @@
+EXEC := exec_forward
+
+F := gfortran
+
+exec_forward: budyko_sellers.o fwd_driver.o
+		$(F) -o $@ $^
+
+%.o: %.f 
+		$(F) -c $<
+
+.PHONY: clean
+clean:
+	$(RM) $(EXEC) *.o *.msg *.mod *_tl.f *_ad.f *~ tapStack* *.txt
+	$(RM) *log* *intermediate*
+	$(RM)  taf_command taf_output fort.11
+
