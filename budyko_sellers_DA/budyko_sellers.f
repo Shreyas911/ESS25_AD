@@ -15,7 +15,14 @@ C ---------------------------------
       REAL*8 XXS
       REAL*8 J
 
+      REAL*8 TARGET_DT
+
 CADJ INIT tapex = 'TAF_tape'
+
+C --- Read target equator-to-pole temperature difference
+      OPEN(99, FILE='target_E2P_deltaT.dat')
+      READ(99, *) TARGET_DT
+      CLOSE(99)
 
 C --- Constants
       S0 = 1366.D0
@@ -117,7 +124,8 @@ C --- and the average the average of the band around the north pole
 C --- and south pole 
 C --- 1/2 * ( T(1)  + T(N) )
 
-      J = 0.5*(0.5*( T(50) + T(51)) - 0.5* ( T(1) + T(N) ) - 45.0)**2
+      J = 0.5*(0.5*( T(50) + T(51)) - 0.5* ( T(1) + T(N) )
+     &         - TARGET_DT)**2
 C ---     Avg. T around Eq.    -   Avg T around poles
       
       END
