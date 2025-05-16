@@ -1,0 +1,23 @@
+EXEC := taf_exec_ad taf_exec_tl
+
+F    := gfortran
+
+taf_exec_ad: budyko_sellers_ad.o ad_driver.o
+		$(F) -o $@ $^
+taf_exec_tl: budyko_sellers_tl.o tl_driver.o
+		$(F) -o $@ $^
+
+%.o: %.f 
+		$(F) -c $<
+
+budyko_sellers_ad.f: budyko_sellers.f
+		staf -toplevel F -input XXS -output J -reverse -arglist budyko_sellers.f  -l taf_reverse.log -f77 -warning -info; cat taf_reverse.log
+budyko_sellers_tl.f: budyko_sellers.f
+		staf -toplevel F -input XXS -output J -forward -arglist budyko_sellers.f -l taf_forward.log -f77 -pure
+
+.PHONY: clean
+clean:
+	$(RM) $(EXEC) *.o *.msg *.mod *_tl.f *_ad.f *~ tapStack* *.txt
+	$(RM) *log* *intermediate*
+	$(RM) taf_command taf_output fort.11
+

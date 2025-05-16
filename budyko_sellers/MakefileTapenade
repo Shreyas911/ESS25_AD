@@ -1,12 +1,12 @@
-EXEC := exec_ad exec_tl
+EXEC := tap_exec_ad tap_exec_tl
 
 F    := gfortran
 CC 	 := gcc
 ADFirstAidKit:= ../ADFirstAidKit
 
-exec_ad: adStack.o adBinomial.o budyko_sellers_ad.o ad_driver.o
+tap_exec_ad: adStack.o adBinomial.o budyko_sellers_ad.o ad_driver.o
 		$(F) -o $@ $^
-exec_tl: adStack.o adBinomial.o budyko_sellers_tl.o tl_driver.o
+tap_exec_tl: adStack.o adBinomial.o budyko_sellers_tl.o tl_driver.o
 		$(F) -o $@ $^
 
 %.o: %.f 
