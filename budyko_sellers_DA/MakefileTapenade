@@ -1,0 +1,25 @@
+EXEC := tap_exec_da
+
+F    := gfortran
+CC 	 := gcc
+ADFirstAidKit := ../ADFirstAidKit
+
+tap_exec_da: adStack.o adBinomial.o budyko_sellers.o budyko_sellers_ad.o da_driver.o
+		$(F) -o $@ $^
+
+%.o: %.f 
+		$(F) -c $<
+
+adBinomial.o:
+		$(CC) -c $(ADFirstAidKit)/adBinomial.c
+
+adStack.o : 
+		$(CC) -c $(ADFirstAidKit)/adStack.c
+
+budyko_sellers_ad.f: budyko_sellers.f
+		tapenade -reverse -adjvarname %_ad -adjfuncname %_ad -head "BUDYKO_SELLERS(J)/(XXS)" budyko_sellers.f
+
+.PHONY: clean
+clean:
+	$(RM) $(EXEC) *.o *.msg *.mod *_ad.f *~ tapStack* *.txt fort.*
+
