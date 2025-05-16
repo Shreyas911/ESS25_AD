@@ -2,7 +2,7 @@ EXEC := tap_exec_ad tap_exec_tl
 
 F    := gfortran
 CC 	 := gcc
-ADFirstAidKit:= ../ADFirstAidKit
+ADFirstAidKit := ../ADFirstAidKit
 
 tap_exec_ad: adStack.o adBinomial.o budyko_sellers_ad.o ad_driver.o
 		$(F) -o $@ $^
@@ -19,11 +19,11 @@ adStack.o :
 		$(CC) -c $(ADFirstAidKit)/adStack.c
 
 budyko_sellers_ad.f: budyko_sellers.f
-		tapenade -reverse -adjvarname %_ad -adjfuncname %_ad -head "F(J)/(xxs)" budyko_sellers.f
+		tapenade -reverse -adjvarname %_ad -adjfuncname %_ad -head "BUDYKO_SELLERS(J)/(XXS)" budyko_sellers.f
 budyko_sellers_tl.f: budyko_sellers.f
-		tapenade -tangent -tgtvarname %_tl -tgtfuncname %_tl -head "F(J)/(xxs)" budyko_sellers.f
+		tapenade -tangent -tgtvarname %_tl -tgtfuncname %_tl -head "BUDYKO_SELLERS(J)/(XXS)" budyko_sellers.f
 
 .PHONY: clean
 clean:
-	$(RM) $(EXEC) *.o *.msg *.mod *_tl.f *_ad.f *~ tapStack* *.txt
+	$(RM) $(EXEC) *.o *.msg *.mod *_tl.f *_ad.f *~ tapStack* *.txt fort.*
 

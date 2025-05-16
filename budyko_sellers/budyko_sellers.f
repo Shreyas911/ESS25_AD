@@ -1,6 +1,6 @@
      
 C ---------------------------------
-      SUBROUTINE F(XXS, J)
+      SUBROUTINE BUDYKO_SELLERS(XXS, J)
       
       INTEGER N, I, ITER, MAX_ITER
       PARAMETER (N=100, MAX_ITER=100000)

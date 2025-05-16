@@ -11,13 +11,13 @@ taf_exec_tl: budyko_sellers_tl.o tl_driver.o
 		$(F) -c $<
 
 budyko_sellers_ad.f: budyko_sellers.f
-		staf -toplevel F -input XXS -output J -reverse -arglist budyko_sellers.f  -l taf_reverse.log -f77 -warning -info; cat taf_reverse.log
+		staf -toplevel BUDYKO_SELLERS -input XXS -output J -reverse -arglist budyko_sellers.f  -l taf_reverse.log -f77 -warning -info; cat taf_reverse.log
 budyko_sellers_tl.f: budyko_sellers.f
-		staf -toplevel F -input XXS -output J -forward -arglist budyko_sellers.f -l taf_forward.log -f77 -pure
+		staf -toplevel BUDYKO_SELLERS -input XXS -output J -forward -arglist budyko_sellers.f -l taf_forward.log -f77 -pure
 
 .PHONY: clean
 clean:
-	$(RM) $(EXEC) *.o *.msg *.mod *_tl.f *_ad.f *~ tapStack* *.txt
+	$(RM) $(EXEC) *.o *.msg *.mod *_tl.f *_ad.f *.txt
 	$(RM) *log* *intermediate*
-	$(RM) taf_command taf_output fort.11
+	$(RM) taf_command taf_output fort.*
 

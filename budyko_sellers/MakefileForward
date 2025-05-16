@@ -1,6 +1,6 @@
 EXEC := exec_forward
 
-F    := gfortran
+F := gfortran
 
 exec_forward: budyko_sellers.o fwd_driver.o
 		$(F) -o $@ $^
