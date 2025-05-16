@@ -1,1 +1,0 @@
-tafx  -toplevel F -input XXS -output J -reverse -arglist -l taf.log -f77 -warning -info  BS_v6.f
