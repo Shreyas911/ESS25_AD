@@ -2,7 +2,7 @@ EXEC := taf_exec_da
 
 F    := gfortran
 
-taf_exec_da: budyko_sellers.o budyko_sellers_ad.o da_driver.o
+taf_exec_da: budyko_sellers_ad.o da_driver.o
 		$(F) -o $@ $^
 
 %.o: %.f 
