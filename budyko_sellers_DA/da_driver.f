@@ -4,7 +4,7 @@
       
       INTEGER N, I, ITER_GD, MAX_ITER_GD
       DOUBLE PRECISION ETA
-      PARAMETER (ETA=0.00001, N=100, MAX_ITER_GD=100)
+      PARAMETER (ETA=0.0001, N=100, MAX_ITER_GD=300)
 
       double precision J
       double precision J_AD
@@ -19,19 +19,22 @@ C       Initialize the gradient vector to zero
       J = 0.
       ITER_GD = 0
 
+      XXS = -0.50
       call budyko_sellers(XXS, J)
-      print *, "GradDes Iter ", ITER_GD, " Cost J: ", J, " XXS: ", XXS
+      print *, "GradDes I ", ITER_GD, " Cost J: ", J, " XXS: ", XXS
 
       DO ITER_GD = 1, MAX_ITER_GD
 C       initialize with J_AD = 1
         J_AD = 1.
+        XXS_AD = 0.0D0
         call budyko_sellers_ad( XXS, XXS_AD, J, J_AD )
         
           XXS = XXS - ETA*XXS_AD
 
         call budyko_sellers(XXS, J)
-        print *, "GradDes Iter ", ITER_GD, " Cost J: ", J, " XXS: ", XXS
 
+        print *, "GradDes I ", ITER_GD, " Cost J: ", J, " XXS: ", XXS,
+     &           " XXSAD: ", XXS_AD
       END DO                    
 
       END
