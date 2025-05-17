@@ -1,4 +1,4 @@
-      PROGRAM AD_DRIVER
+      PROGRAM DA_DRIVER
 
       IMPLICIT NONE
       
@@ -19,9 +19,11 @@ C       Initialize the gradient vector to zero
       J = 0.
       ITER_GD = 0
 
-      XXS = -0.50
       call budyko_sellers(XXS, J)
-      print *, "GradDes I ", ITER_GD, " Cost J: ", J, " XXS: ", XXS
+
+      WRITE(*,100) ITER_GD, J, XXS
+100   FORMAT('GradDes I: ', I5,     '     | Cost J: ',   F12.6,
+     &       '    | XXS: ',     F10.6)
 
       DO ITER_GD = 1, MAX_ITER_GD
 C       initialize with J_AD = 1
@@ -29,12 +31,17 @@ C       initialize with J_AD = 1
         XXS_AD = 0.0D0
         call budyko_sellers_ad( XXS, XXS_AD, J, J_AD )
         
-          XXS = XXS - ETA*XXS_AD
+        XXS = XXS - ETA*XXS_AD
+
+        print *, "--------------------------------------------------",
+     &           "--------------------------------------------------"
 
         call budyko_sellers(XXS, J)
 
-        print *, "GradDes I ", ITER_GD, " Cost J: ", J, " XXS: ", XXS,
-     &           " XXSAD: ", XXS_AD
+      WRITE(*,110) ITER_GD, J, XXS
+110   FORMAT('GradDes I: ', I5,     '     | Cost J: ',   F12.6,
+     &       '    | XXS: ',     F10.6)
+
       END DO                    
 
       END
