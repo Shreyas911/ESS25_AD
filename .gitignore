@@ -3,5 +3,7 @@
 **/*.mod
 **/*_tl.f*
 **/*_ad.f*
-**/exec*
+**/*exec*
 **/fort.*
+**/.ipynb_*
+**/*.msg
