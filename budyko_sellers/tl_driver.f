@@ -16,7 +16,7 @@
       END DO
 
 C     open a file to save gradients (dJ/dx)
-      open(unit=11,file='dJdx_from_tangent_linear.txt')      
+      open(unit=111,file='dJdx_from_tangent_linear.txt')      
 
       J = 0.0d0
 
@@ -30,9 +30,9 @@ C         reset perturbation to zero
           XXS_TL(I) = 0.
 
           print *, 'values of gradient for I = ', I, ': ', J_TL 
-          write(unit=11,fmt=*) J_TL
+          write(unit=111,fmt='(F24.17,A)') J_TL
       END DO
 
-      close(unit=11)
+      close(unit=111)
       
       END

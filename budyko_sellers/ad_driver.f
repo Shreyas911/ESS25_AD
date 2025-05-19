@@ -32,8 +32,8 @@ C     initialize with J_AD = 1
 
 C     Save the gradient vector to disk 
       open(unit=10, file='dJdX_from_adjoint.txt')
-      do i = 1, n
-         write(unit=10,fmt=*) XXS_AD(i)
+      do I = 1, N
+         write(unit=10,fmt='(F24.17,A)') XXS_AD(I)
       end do
       close(unit=10)
  

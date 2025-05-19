@@ -12,5 +12,5 @@ exec_forward: budyko_sellers.o fwd_driver.o
 clean:
 	$(RM) $(EXEC) *.o *.msg *.mod *_tl.f *_ad.f *~ tapStack* *.txt
 	$(RM) *log* *intermediate*
-	$(RM)  taf_command taf_output fort.11
+	$(RM)  taf_command taf_output fort.*
 

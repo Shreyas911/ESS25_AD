@@ -132,18 +132,18 @@ C --- Write diagnostic output to disk
       OPEN(17, FILE='J.txt')
 
       DO I = 1, N
-         WRITE(10,*) LAT(I)
-         WRITE(11,*) T(I)
-         WRITE(12,*) ALPHA(I)
-         WRITE(13,*) FIN(I)
-         WRITE(14,*) FOUT(I)
-         WRITE(15,*) FDIFF(I)
-         WRITE(16,*) FIN(I) - FOUT(I) + FDIFF(I)
+         WRITE(10,'(F24.17,A)') LAT(I)
+         WRITE(11,'(F24.17,A)') T(I)
+         WRITE(12,'(F24.17,A)') ALPHA(I)
+         WRITE(13,'(F24.17,A)') FIN(I)
+         WRITE(14,'(F24.17,A)') FOUT(I)
+         WRITE(15,'(F24.17,A)') FDIFF(I)
+         WRITE(16,'(F24.17,A)') FIN(I) - FOUT(I) + FDIFF(I)
          
       END DO
      
        
-      WRITE(17,*) J
+      WRITE(17,'(F24.17,A)') J
     
       CLOSE(10)
       CLOSE(11)
