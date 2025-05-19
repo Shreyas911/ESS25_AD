@@ -140,4 +140,37 @@ C --- Compute where the ice line is
 120   FORMAT('T_pole: ',    F10.3, '   | T_equator: ', F10.3,
      &       '   | ICE_LINE IN DEGREES IN NORTHERN HEMISPHERE: ', F10.3)
 
+C --- Write diagnostic output to disk
+      OPEN(10, FILE='latitude.txt')
+      OPEN(11, FILE='temperature.txt')
+      OPEN(12, FILE='albedo.txt')
+      OPEN(13, FILE='F_in.txt')
+      OPEN(14, FILE='F_out.txt')
+      OPEN(15, FILE='F_diff.txt')
+      OPEN(16, FILE='net_flux.txt')
+      OPEN(17, FILE='J.txt')
+
+      DO I = 1, N
+         WRITE(10,'(F24.17,A)') LAT(I)
+         WRITE(11,'(F24.17,A)') T(I)
+         WRITE(12,'(F24.17,A)') ALPHA(I)
+         WRITE(13,'(F24.17,A)') FIN(I)
+         WRITE(14,'(F24.17,A)') FOUT(I)
+         WRITE(15,'(F24.17,A)') FDIFF(I)
+         WRITE(16,'(F24.17,A)') FIN(I) - FOUT(I) + FDIFF(I)
+         
+      END DO
+     
+       
+      WRITE(17,'(F24.17,A)') J
+    
+      CLOSE(10)
+      CLOSE(11)
+      CLOSE(12)
+      CLOSE(13)
+      CLOSE(14)
+      CLOSE(15)
+      CLOSE(16)
+      CLOSE(17)
+
       END
