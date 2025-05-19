@@ -2,7 +2,7 @@
 C ---------------------------------
       SUBROUTINE BUDYKO_SELLERS(XXS, J)
       
-      INTEGER N, I, ITER, MAX_ITER
+      INTEGER N, I, ITER, MAX_ITER, ICE_LINE
       PARAMETER (N=100, MAX_ITER=100000)
       
       REAL*8 X(N), XEDGES(N+1), DX
@@ -119,7 +119,18 @@ C --- 1/2 * ( T(1)  + T(N) )
 
       J = 0.5*( T(50) + T(51)) - 0.5* ( T(1) + T(N) )
 C ---     Avg. T around Eq.    -   Avg T around poles
-      
+
+C --- Compute where the ice line is
+      ICE_LINE = 0
+      DO I = 1, N/2
+        if ( T(i) .LE. 273.15 ) then
+          ICE_LINE = I
+        endif
+      END DO
+
+      WRITE(*,120) T(1), T(50), 90.0-ICE_LINE*180.0/N
+120   FORMAT('T_pole: ',    F10.3, '   | T_equator: ', F10.3,
+     &       '   | ICE_LINE IN DEGREES IN NORTHERN HEMISPHERE: ', F10.3)
 
 C --- Write diagnostic output to disk
       OPEN(10, FILE='latitude.txt')

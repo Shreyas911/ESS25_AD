@@ -16,7 +16,7 @@
       END DO
 
 C     open a file to save gradients (dJ/dx)
-      open(unit=111,file='dJdx_from_tangent_linear.txt')      
+      open(unit=111,file='dJdX_from_tangent_linear.txt')
 
       J = 0.0d0
 

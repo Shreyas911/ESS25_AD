@@ -127,7 +127,7 @@ C --- 1/2 * ( T(1)  + T(N) )
       J = 0.5*(0.5*( T(50) + T(51)) - 0.5* ( T(1) + T(N) )
      &         - TARGET_DT)**2
 C ---     Avg. T around Eq.    -   Avg T around poles
-      
+
 C --- Compute where the ice line is
       ICE_LINE = 0
       DO I = 1, N/2
@@ -136,8 +136,8 @@ C --- Compute where the ice line is
         endif
       END DO
 
-      WRITE(*,120) T(1), T(50), ICE_LINE
+      WRITE(*,120) T(1), T(50), 90.0-ICE_LINE*180.0/N
 120   FORMAT('T_pole: ',    F10.3, '   | T_equator: ', F10.3,
-     &       '   | ICE_LINE: ', I3)
+     &       '   | ICE_LINE IN DEGREES IN NORTHERN HEMISPHERE: ', F10.3)
 
       END
